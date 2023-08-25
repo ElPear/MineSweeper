@@ -181,7 +181,7 @@ namespace MineSweeper
                     CheckClose(tile);
                 }
                 //
-                int stuff = 0;
+                int marked = 0;
                 for (int i = -1; i < 2; i++)
                 {
                     for (int j = -1; j < 2; j++)
@@ -189,14 +189,14 @@ namespace MineSweeper
                         try
                         {
                             if (grid[x + i, y + j].Marked && grid[x + i, y + j].Covered)
-                                stuff++;
+                                marked++;
                         }
                         catch { }
 
                     }
                 }
 
-                if (tile.AdjacentMines == stuff && tile.AdjacentMines != 0)
+                if (tile.AdjacentMines == marked && tile.AdjacentMines != 0)
                 {
                     for (int i = -1; i < 2; i++)
                     {
@@ -324,7 +324,7 @@ namespace MineSweeper
             }
             foreach (Tile tile in grid)
             {
-                int stuff = 0;
+                int adjacentMines = 0;
                 int x = int.Parse(tile.Name.Replace("Tile", "").Split("-")[0]);
                 int y = int.Parse(tile.Name.Replace("Tile", "").Split("-")[1]);
 
@@ -335,13 +335,13 @@ namespace MineSweeper
                         try
                         {
                             if (grid[x + i, y + j].Mine)
-                                stuff++;
+                                adjacentMines++;
                         }
                         catch { }
 
                     }
                 }
-                tile.AdjacentMines = stuff;
+                tile.AdjacentMines = adjacentMines;
 
                 GetColor(tile);
             }
