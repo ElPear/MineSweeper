@@ -156,10 +156,19 @@ namespace MineSweeper
                 player.Play();
                 MessageBox.Show("yippie");
                 timer1.Stop();
+                return;
             }
         }
         private void CheckTile(object sender, MouseEventArgs e)
         {
+
+            if (GameWon())
+            {
+                player.Play();
+                MessageBox.Show("yippie");
+                timer1.Stop();
+                return;
+            }
             if (gameOver)
             {
                 return;
@@ -247,7 +256,9 @@ namespace MineSweeper
                                     if (grid[x + i, y + j].AdjacentMines == 0)
                                     {
                                         CheckClose(grid[x + i, y + j]);
+
                                     }
+
                                 }
 
 
@@ -266,6 +277,13 @@ namespace MineSweeper
             else if (e.Button == MouseButtons.Right)
             {
                 MarkTile(tile);
+            }
+            if (GameWon())
+            {
+                player.Play();
+                MessageBox.Show("yippie");
+                timer1.Stop();
+                return;
             }
         }
         private void CheckClose(Tile tile)
