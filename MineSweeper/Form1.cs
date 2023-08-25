@@ -98,7 +98,7 @@ namespace MineSweeper
             timer1.Start();
             time = 0;
             gameOver = false;
-            mines = (int)Math.Round(arenaSize * arenaSize * 0.20);
+            mines = (int)Math.Round(arenaSize * arenaSize * 0.20/10)*10;
             flags = mines;
             label1.Text = $"Flags: {flags}";
 
