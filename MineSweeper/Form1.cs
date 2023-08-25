@@ -19,9 +19,9 @@ namespace MineSweeper
             label2.Left = label1.Right;
             comboBox1.Left = label2.Right;
             comboBox1.SelectedIndex = 0;
-
+            player.Play();
         }
-
+        System.Media.SoundPlayer player = new System.Media.SoundPlayer("Win.wav");
 
         bool gameOver = false;
         int time = 0;
@@ -154,6 +154,7 @@ namespace MineSweeper
             label1.Text = $"Flags: {flags}";
             if (GameWon())
             {
+                player.Play();
                 MessageBox.Show("yippie");
                 timer1.Stop();
             }
@@ -401,7 +402,6 @@ namespace MineSweeper
                     break;
             }
         }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             time++;
