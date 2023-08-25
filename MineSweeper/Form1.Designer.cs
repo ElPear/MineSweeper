@@ -90,6 +90,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(button1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);

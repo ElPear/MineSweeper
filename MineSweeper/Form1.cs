@@ -58,6 +58,13 @@ namespace MineSweeper
                 if (!item.Marked && item.Mine)
                     isOver = false;
             }
+            foreach (Tile item in grid)
+            {
+                if (item.Covered && !item.Mine)
+                {
+                    isOver = false;
+                }
+            }
             return isOver;
 
         }
@@ -147,7 +154,7 @@ namespace MineSweeper
             }
 
             Tile tile = (Tile)sender;
-            
+
             int x = int.Parse(tile.Name.Replace("Tile", "").Split("-")[0]);
             int y = int.Parse(tile.Name.Replace("Tile", "").Split("-")[1]);
             if (e.Button == MouseButtons.Left)
@@ -165,7 +172,7 @@ namespace MineSweeper
                         if (item.Mine)
                         {
                             item.BackColor = Color.IndianRed;
-                            
+
 
                         }
                     }
@@ -234,14 +241,15 @@ namespace MineSweeper
 
 
 
-                            }catch { }
+                            }
+                            catch { }
 
                         }
                     }
                 }
-                    
-                    
-                    
+
+
+
             }
             else if (e.Button == MouseButtons.Right)
             {
@@ -306,7 +314,7 @@ namespace MineSweeper
                         Name = $"Tile{x}-{y}",
                         Width = tileSize,
                         Height = tileSize,
-                        Location = new Point(10 +margin + tileSize * x, 35 + tileSize * y),
+                        Location = new Point(10 + margin + tileSize * x, 35 + tileSize * y),
                         BackColor = Color.LightGray,
                         Covered = true,
                         Mine = false,
