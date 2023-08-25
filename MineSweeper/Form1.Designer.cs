@@ -76,7 +76,7 @@
             // 
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Easy", "Medium", "Hard" });
+            comboBox1.Items.AddRange(new object[] { "Easy", "Medium", "Hard", "Very Hard" });
             comboBox1.Location = new Point(293, 0);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(121, 23);
@@ -92,7 +92,7 @@
             Controls.Add(button1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "Form1";
-            Text = "Form1";
+            Text = "MineSweeper";
             ResumeLayout(false);
         }
 

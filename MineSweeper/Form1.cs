@@ -7,21 +7,29 @@ namespace MineSweeper
         public Form1()
         {
             InitializeComponent();
-            this.Size = new Size(25 + tileSize * arenaSize + 10, 75 + tileSize * arenaSize + 10);
+            init();
+        }
+
+        private void init()
+        {
+            this.Size = new Size(25 + tileSize * arenaSize + 10, 75 + tileSize * 8 + 10);
             int margin = (this.Bounds.Width - (button1.Width + label1.Width + label2.Width + comboBox1.Width)) / 2;
             button1.Left = margin;
             label1.Left = button1.Right;
             label2.Left = label1.Right;
             comboBox1.Left = label2.Right;
             comboBox1.SelectedIndex = 0;
+
         }
+
+
         bool gameOver = false;
         int time = 0;
         int mines;
         int flags;
         int minesPlaced = 0;
         int tileSize = 30;
-        int arenaSize = 20;
+        int arenaSize = 28;
         Tile[,] grid;
         public partial class Tile : Button
         {
@@ -81,6 +89,9 @@ namespace MineSweeper
                 case "Hard":
                     arenaSize = 20;
                     break;
+                case "Very Hard":
+                    arenaSize = 28;
+                    break;
                 default:
                     break;
             }
@@ -90,7 +101,8 @@ namespace MineSweeper
             mines = (int)Math.Round(arenaSize * arenaSize * 0.20);
             flags = mines;
             label1.Text = $"Flags: {flags}";
-            this.Size = new Size(this.Width, 75 + tileSize * arenaSize + 10);
+
+            this.Size = new Size(25 + tileSize * 28 + 10, 75 + tileSize * arenaSize + 10);
             StartGame();
         }
         private void PlaceMine()
@@ -303,7 +315,7 @@ namespace MineSweeper
 
             }
 
-            int margin = (tileSize * 20 - tileSize * arenaSize) / 2;
+            int margin = (tileSize * 28 - tileSize * arenaSize) / 2;
             grid = new Tile[arenaSize, arenaSize];
             for (int x = 0; x < arenaSize; x++)
             {
