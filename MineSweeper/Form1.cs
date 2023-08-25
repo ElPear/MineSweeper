@@ -19,7 +19,6 @@ namespace MineSweeper
             label2.Left = label1.Right;
             comboBox1.Left = label2.Right;
             comboBox1.SelectedIndex = 0;
-            player.Play();
         }
         System.Media.SoundPlayer player = new System.Media.SoundPlayer("Win.wav");
 
