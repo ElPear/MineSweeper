@@ -30,6 +30,7 @@ namespace MineSweeper
         int tileSize = 30;
         int arenaSize = 28;
         Tile[,] grid;
+        List<Tile> safeTiles = new List<Tile>();
         public partial class Tile : Button
         {
             private int adjacentMines;
@@ -56,6 +57,22 @@ namespace MineSweeper
                 get { return marked; }
                 set { marked = value; }
             }
+        }
+        private void SafeStart()
+        {
+            safeTiles.Clear();
+
+            Random rng = new();
+            foreach (Tile item in grid)
+            {
+                if (item.AdjacentMines == 0)
+                {
+                    safeTiles.Add(item);
+                }
+            }
+            
+            safeTiles[rng.Next(1, safeTiles.Count)].BackColor = Color.LimeGreen;
+
         }
         private bool GameWon()
         {
@@ -322,10 +339,10 @@ namespace MineSweeper
         {
             try
             {
+                minesPlaced = 0;
                 foreach (Tile item in grid)
                 {
                     Controls.Remove(item);
-                    minesPlaced = 0;
                 }
             }
             catch
@@ -383,6 +400,7 @@ namespace MineSweeper
 
                 GetColor(tile);
             }
+            SafeStart();
         }
         private static void GetColor(Tile tile)
         {
